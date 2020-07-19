@@ -1,0 +1,12 @@
+@import '../../scss/base/grid',
+        '../../scss/helpers/vars';
+
+.searching {
+  padding: 20px 0 50px;
+
+  &__heading {
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: $c-white;
+  }
+}

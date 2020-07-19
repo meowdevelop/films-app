@@ -1,0 +1,45 @@
+@import '../../scss/helpers/vars';
+
+.btnSearchLink {
+  padding: 7px 20px;
+  color: $c-primary;
+  border-radius: 4px;
+  background-color: $c-white;
+  transition-duration: 0.2s;
+
+  &:hover {
+    color: $c-white;
+    background-color: $c-primary;
+  }
+}
+
+.favourites {
+  font-size: 1.3rem;
+  color: $c-primary;
+  text-decoration: underline;
+  transition-duration: 0.2s;
+
+  &:hover {
+    color: $c-white;
+  }
+}
+
+.btnFav {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  font-size: bold;
+  font-size: 1.4rem;
+  color: rgb(117, 117, 117);
+  border: 2px solid lightgray;
+  border-radius: 50%;
+  cursor: pointer;
+  transition-duration: 0.3s;
+  outline: none;
+
+  &:hover {
+    border-color: rgb(255, 255, 0);
+  }
+}

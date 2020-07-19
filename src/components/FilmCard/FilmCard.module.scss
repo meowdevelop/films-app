@@ -1,0 +1,97 @@
+@import '../../scss/base/grid',
+        '../../scss/helpers/vars';
+
+.filmCard {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 20px 0 50px;
+
+  @media screen and (min-width: $md-media) {
+    flex-wrap: nowrap;
+  }
+
+  &__imgWrap {
+    position: relative;
+    flex-shrink: 0;
+    margin-right: 50px;
+    margin-bottom: 20px;
+
+    @media screen and (min-width: $md-media) {
+      margin-bottom: 0;
+    }
+  }
+
+  &__img {
+    width: 300px;
+    height: 450px;
+  }
+
+  &__info {
+    font-size: 1.1rem;
+
+    @media screen and (min-width: $lg-media) {
+      padding-top: 30px;
+      font-size: 1.3rem;
+    }
+  }
+
+  &__headingInfo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+
+  &__filmName {
+    font-size: 2rem;
+    font-weight: bold;
+    color: $c-primary;
+  }
+
+  &__rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    margin-left: 15px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: $c-green;
+    border: 1px solid $c-green;
+    border-radius: 50%;
+  }
+
+  &__caption {
+    margin-bottom: 15px;
+    color: rgba(255, 255, 255, 0.822);
+  }
+
+  &__miniInfo {
+    margin-bottom: 25px;
+    font-weight: bold;
+    color: $c-white;
+  }
+
+  &__year {
+    margin-right: 15px;
+  }
+
+  &__descr {
+    margin-bottom: 25px;
+    line-height: 1.5rem;
+    color: $c-white;
+  }
+
+  &__director {
+    margin-bottom: 15px;
+    color: rgba(255, 255, 255, 0.822);
+  }
+
+  &__cast {
+    margin-bottom: 15px;
+    line-height: 1.5rem;
+    color: rgba(255, 255, 255, 0.822);
+  }
+}

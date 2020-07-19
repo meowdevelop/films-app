@@ -1,0 +1,30 @@
+@import
+  './base/reset',
+  './base/grid';
+
+.container {
+  position: relative;
+  width: 100%;
+  padding: 0 15px;
+  margin: 0 auto;
+
+  @media screen and (min-width: $md-media) {
+    width: $md-content;
+    padding: 0;
+  }
+
+  @media screen and (min-width: $lg-media) {
+    width: $lg-content;
+  }
+
+  @media screen and (min-width: $xl-media) {
+    width: $xl-content;
+  }
+}
+
+.wrapper {
+  background-image: 
+  linear-gradient(to top, rgba(29, 28, 28, 0.7), rgba(29, 28, 28, 0.7)),
+  url('../images/banner.jpg');
+  background-size: cover;
+}

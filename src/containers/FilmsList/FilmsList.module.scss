@@ -1,0 +1,18 @@
+@import '../../scss/base/grid';
+
+.filmsList {
+  min-height: calc(100vh - 339px);
+  display: grid;
+  grid-row-gap: 40px;
+  padding: 40px 0;  
+
+   @media screen and (min-width: $md-media) {
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 50px;
+  }
+
+  @media screen and (min-width: $xl-media) {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 30px;
+  }
+}

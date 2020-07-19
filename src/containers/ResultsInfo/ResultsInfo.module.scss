@@ -1,0 +1,31 @@
+@import '../../scss/helpers/vars';
+
+.radioSort {
+  display: flex;
+
+  &__title {
+    margin-right: 10px;
+  }
+
+  &__label {
+    cursor: pointer;
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+
+  input {
+    display: none;
+    &:checked + label {
+      color: $c-primary;
+  
+    }
+  }
+}
+  
+.resultsInfo {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+}

@@ -1,0 +1,138 @@
+{
+  "films": [
+    {
+      "id": 1,
+      "name": "Одиннадцать друзей Оушена",
+      "year": 2001,
+      "jenre": "триллер",
+      "imgPath": "11-friends.jpeg",
+      "rating": 8.1,
+      "director": "Name1"
+    },
+    {
+      "id": 2,
+      "name": "Хатико",
+      "year": 2008,
+      "jenre": "драма",
+      "imgPath": "chatiko.jpeg",
+      "rating": 8.3,
+      "director": "Name"
+    },
+    {
+      "id": 3,
+      "name": "Зелёная книга",
+      "year": 2018,
+      "jenre": "комедия, драма",
+      "imgPath": "green-book.jpg",
+      "rating": 8.3,
+      "director": "Name1"
+    },
+    {
+      "id": 4,
+      "name": "Начало",
+      "year": 2010,
+      "jenre": "фантастика, боевик",
+      "imgPath": "inception.jpg",
+      "rating": 8.7,
+      "director": "Name"
+    },
+    {
+      "id": 5,
+      "name": "Интерстеллар",
+      "year": 2014,
+      "jenre": "фантастика, драма",
+      "imgPath": "interstellar.jpg",
+      "rating": 8.5,
+      "director": "Name1"
+    },
+    {
+      "id": 6,
+      "name": "Властелин колец",
+      "year": 2001,
+      "jenre": "фэнтези",
+      "imgPath": "lord-of-rings.jpg",
+      "rating": 8.6,
+      "director": "Name1"
+    }
+  ],
+  "filmCard": [
+    {
+      "id": 1,
+      "name": "Одиннадцать друзей Оушена",
+      "year": 2007,
+      "jenre": "триллер",
+      "imgPath": "11-friends.jpeg",
+      "rating": 8.1,
+      "caption": "The best Film",
+      "duration": 154,
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis cumque libero fuga illum facere, vero inventore et repudiandae porro, provident ipsa ex sapiente cupiditate laborum voluptate maiores ratione ea enim.",
+      "director": "Name1",
+      "cast": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis cumque libero fuga illum facere, vero inventore et repudiandae porro"
+    },
+    {
+      "id": 2,
+      "name": "Хатико",
+      "year": 2008,
+      "jenre": "драма",
+      "imgPath": "chatiko.jpeg",
+      "rating": 8.3,
+      "caption": "The best Film",
+      "duration": 154,
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis cumque libero fuga illum facere, vero inventore et repudiandae porro, provident ipsa ex sapiente cupiditate laborum voluptate maiores ratione ea enim.",
+      "director": "Name",
+      "cast": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis cumque libero fuga illum facere, vero inventore et repudiandae porro"
+    },
+    {
+      "id": 3,
+      "name": "Зелёная книга",
+      "year": 2018,
+      "jenre": "комедия, драма",
+      "imgPath": "green-book.jpg",
+      "rating": 8.3,
+      "caption": "The best Film",
+      "duration": 154,
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis cumque libero fuga illum facere, vero inventore et repudiandae porro, provident ipsa ex sapiente cupiditate laborum voluptate maiores ratione ea enim.",
+      "director": "Name1",
+      "cast": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis cumque libero fuga illum facere, vero inventore et repudiandae porro"
+    },
+    {
+      "id": 4,
+      "name": "Начало",
+      "year": 2010,
+      "jenre": "фантастика, боевик",
+      "imgPath": "inception.jpg",
+      "rating": 8.7,
+      "caption": "The best Film",
+      "duration": 154,
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis cumque libero fuga illum facere, vero inventore et repudiandae porro, provident ipsa ex sapiente cupiditate laborum voluptate maiores ratione ea enim.",
+      "director": "Name",
+      "cast": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis cumque libero fuga illum facere, vero inventore et repudiandae porro"
+    },
+    {
+      "id": 5,
+      "name": "Интерстеллар",
+      "year": 2014,
+      "jenre": "фантастика, драма",
+      "imgPath": "interstellar.jpg",
+      "rating": 8.5,
+      "caption": "The best Film",
+      "duration": 154,
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis cumque libero fuga illum facere, vero inventore et repudiandae porro, provident ipsa ex sapiente cupiditate laborum voluptate maiores ratione ea enim.",
+      "director": "Name1",
+      "cast": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis cumque libero fuga illum facere, vero inventore et repudiandae porro"
+    },
+    {
+      "id": 6,
+      "name": "Властелин колец",
+      "year": 2001,
+      "jenre": "фэнтези",
+      "imgPath": "lord-of-rings.jpg",
+      "rating": 8.6,
+      "caption": "The best Film",
+      "duration": 154,
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis cumque libero fuga illum facere, vero inventore et repudiandae porro, provident ipsa ex sapiente cupiditate laborum voluptate maiores ratione ea enim.",
+      "director": "Name1",
+      "cast": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis cumque libero fuga illum facere, vero inventore et repudiandae porro"
+    }
+  ]
+}

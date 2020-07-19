@@ -1,0 +1,14 @@
+@import '../../scss/base/grid',
+        '../../scss/helpers/vars';
+
+.text {
+  padding-top: 20px;
+  padding-bottom: 30px;
+  font-size: 3rem;
+  font-weight: bold;
+  color: $c-gray;
+
+  @media screen and (min-width: $md-media) {
+      padding-top: 90px;
+    }
+}

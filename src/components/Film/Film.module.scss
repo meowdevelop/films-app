@@ -1,0 +1,54 @@
+@import '../../scss/base/grid',
+        '../../scss/helpers/vars';
+
+.film {
+  width: 290px;
+  margin: 0 auto;
+  // margin-bottom: 40px;
+
+  @media screen and (min-width: $md-media) {
+    width: 290px;
+  }
+
+  @media screen and (min-width: $lg-media) {
+    width: 313px;
+  }
+
+  &__imgWrap {
+    position: relative;
+  }
+  
+  &__img {
+    width: 100%;
+    height: 420px;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+  }
+
+  &__infoGroup {
+    margin-right: 7px;
+  }
+
+  &__name {
+    margin-bottom: 7px;
+    line-height: 1.3rem;
+    text-transform: uppercase;
+  }
+
+  &__genre {
+    color: $c-gray;
+  }
+
+  &__year {
+    display: inline-block;
+    align-self: start;
+    padding: 3px 7px;
+    font-size: 0.8rem;
+    border: 1px solid $c-lightgray;
+    border-radius: 2px;
+  }
+}
