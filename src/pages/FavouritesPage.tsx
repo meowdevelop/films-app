@@ -7,40 +7,27 @@ import Footer from '../components/Footer/Footer';
 import HeaderWrapper from '../components/HeaderWrapper/HeaderWrapper';
 import HeadingFav from '../components/HeadingFav/HeadingFav';
 import FilmTypes from '../models/FilmTypes';
+import {setFavourites} from '../actions/actions';
+import {setFilms} from '../actions/actions';
+import {fetchFilms} from '../actions/actions';
 
 class FavouritesPage extends React.Component<any> {
+
   componentDidMount() {
-    const { updateState } = this.props;
-    updateState('SET_FILMS', []);
+    const { setFavourites, setFilms, fetchFilms } = this.props;
+    setFilms([]);
     if (localStorage.favourites) {
       const arrFavourites = localStorage.favourites.split('&');
-      updateState('SET_FAVOURITES', arrFavourites);
+      setFavourites(arrFavourites);
       const searchParams = arrFavourites.map((item: string) => `id=${item}`);
+      const url = `/films?${searchParams.join('&')}`;
 
-      fetch(`/films?${searchParams.join('&')}`)
-        .then((response) => {
-          if (!response.ok) throw new Error('Ответ сети не ok');
-          return response.json();
-        })
-        .then((data) => {
-          updateState('SET_FILMS', this.mapWithFavorites(data));
-        })
-        .catch((error) => console.log(error.message));
+      fetchFilms(url);
     }
   }
 
-  mapWithFavorites(films: FilmTypes[]) {
-    const { store } = this.props;
-    const { favourites } = store.films;
-    return films.map((item: FilmTypes) => {
-      if (favourites.includes(`${item.id}`)) return { ...item, isFav: true };
-      return { ...item, isFav: false };
-    });
-  }
-
   render() {
-    const { store } = this.props;
-    const { films } = store.films;
+    const { films } = this.props;
     return (
       <section>
         <HeaderWrapper component={<HeadingFav />} />
@@ -52,13 +39,18 @@ class FavouritesPage extends React.Component<any> {
   }
 }
 
+const mapStateToProps = (state: any) => ({
+  favourites: state.films.favourites,
+  films: state.films.films,
+});
+
+const mapDispatchToProps = {
+  setFavourites,
+  setFilms,
+  fetchFilms
+};
+
 export default connect(
-  (state) => ({
-    store: state,
-  }),
-  (dispatch) => ({
-    updateState: (type: string, payload: any) => {
-      dispatch({ type, payload });
-    },
-  }),
+  mapStateToProps,
+  mapDispatchToProps
 )(FavouritesPage);

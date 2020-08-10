@@ -7,9 +7,7 @@ import ResultsInfo from '../containers/ResultsInfo/ResultsInfo';
 import Footer from '../components/Footer/Footer';
 import HeaderWrapper from '../components/HeaderWrapper/HeaderWrapper';
 
-function SearchPage(props: any) {
-  const { store } = props;
-  const searchedFilms = store.films.films;
+const SearchPage = ({searchedFilms}: any) => {
   return (
     <section>
       <HeaderWrapper component={<Searching />} />
@@ -20,13 +18,11 @@ function SearchPage(props: any) {
   );
 }
 
+const mapStateToProps = (state: any) => ({
+    searchedFilms: state.films.films
+  });
+
 export default connect(
-  (state) => ({
-    store: state,
-  }),
-  (dispatch) => ({
-    updateState: (type: any, payload: any) => {
-      dispatch({ type, payload });
-    },
-  }),
+  mapStateToProps,
+  null
 )(SearchPage);

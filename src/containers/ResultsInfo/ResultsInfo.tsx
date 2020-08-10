@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 
 import styles from './ResultsInfo.module.scss';
 import stylesPage from '../../scss/Page.module.scss';
+import {setSortType} from '../../actions/actions';
 
-function ResultsInfo(props: {text: string, store: any, updateState: any}) {
-  const { text, store } = props;
-  const { sortType } = store.films;
+const ResultsInfo = (props: {text: string, sortType: string, setSortType: any}) => {
+  const { text, sortType } = props;
   const changeFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { updateState } = props;
-    updateState('SET_SORT_TYPE', event.target.id);
+    const { setSortType } = props;
+    setSortType(event.target.id);
   };
   return (
     <div className={stylesPage.container}>
@@ -27,13 +27,15 @@ function ResultsInfo(props: {text: string, store: any, updateState: any}) {
   );
 }
 
+const mapStateToProps = (state: any) => ({
+  sortType: state.films.sortType
+});
+
+const mapDispatchToProps = {
+  setSortType
+};
+
 export default connect(
-  (state) => ({
-    store: state,
-  }),
-  (dispatch) => ({
-    updateState: (type: string, payload: any) => {
-      dispatch({ type, payload });
-    },
-  }),
+  mapStateToProps,
+  mapDispatchToProps
 )(ResultsInfo);

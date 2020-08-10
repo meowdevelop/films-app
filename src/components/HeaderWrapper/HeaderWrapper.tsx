@@ -2,7 +2,7 @@ import React from 'react';
 import stylesPage from '../../scss/Page.module.scss';
 import Header from '../Header/Header';
 
-function HeaderWrapper(props: {component: React.ReactNode | null}) {
+const HeaderWrapper = (props: {component: React.ReactNode | null}) => {
   const { component } = props;
   return (
     <div className={stylesPage.wrapper}>

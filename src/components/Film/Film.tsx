@@ -4,7 +4,7 @@ import styles from './Film.module.scss';
 import FilmTypes from '../../models/FilmTypes';
 import BtnAddFavourites from '../Btns/BtnAddFavourites';
 
-function Film(props: {film: FilmTypes}) {
+const Film = (props: {film: FilmTypes}) => {
   const { film } = props;
 
   return (

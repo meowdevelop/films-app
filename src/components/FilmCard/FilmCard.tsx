@@ -3,9 +3,9 @@ import styles from './FilmCard.module.scss';
 import FilmCardTypes from '../../models/FilmCardTypes';
 import BtnAddFavourites from '../Btns/BtnAddFavourites';
 
-function FilmCard(props: {film: FilmCardTypes,
+const FilmCard = (props: {film: FilmCardTypes,
   isFavourite: boolean,
-  onClick?: (e: React.MouseEvent) => void }) {
+  onClick?: (e: React.MouseEvent) => void }) => {
   const { film, isFavourite, onClick } = props;
   return (
     <section className={styles.filmCard}>

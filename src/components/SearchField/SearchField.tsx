@@ -3,15 +3,13 @@ import { connect } from 'react-redux';
 import styles from './SearchField.module.scss';
 
 
-function SearchField(props: {store: any,
-  updateState: any,
+const SearchField = (props: {searchValue: string,
   onClick: (e: React.MouseEvent) => void,
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
-  onKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void}) {
+  onKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void}) => {
   const {
-    store, onChange, onKeyPress, onClick,
+    searchValue, onChange, onKeyPress, onClick,
   } = props;
-  const { searchValue } = store.films;
   return (
     <form className={styles.search} action="">
       <input
@@ -28,13 +26,10 @@ function SearchField(props: {store: any,
   );
 }
 
+const mapStateToProps = (state: any) => ({
+  searchValue: state.films.searchValue
+});
+
 export default connect(
-  (state) => ({
-    store: state,
-  }),
-  (dispatch) => ({
-    updateState: (type: string, payload: any) => {
-      dispatch({ type, payload });
-    },
-  }),
+  mapStateToProps
 )(SearchField);

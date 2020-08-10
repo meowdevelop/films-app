@@ -3,11 +3,8 @@ import { connect } from 'react-redux';
 import styles from './SearchFilter.module.scss';
 
 
-function SearchFilter(props:{store: any,
-  updateState: any,
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void}) {
-  const { store, onChange } = props;
-  const { searchFilter } = store.films;
+const SearchFilter = (props:{onChange: (e: React.ChangeEvent<HTMLInputElement>) => void, searchFilter: string}) => {
+  const { searchFilter, onChange } = props;
   return (
     <form className={styles.radioSearch} action="">
       <p className={styles.radioSearch__title}>SEARCH BY</p>
@@ -19,13 +16,10 @@ function SearchFilter(props:{store: any,
   );
 }
 
+const mapStateToProps = (state: any) => ({
+  searchFilter: state.films.searchFilter
+});
+
 export default connect(
-  (state) => ({
-    store: state,
-  }),
-  (dispatch) => ({
-    updateState: (type: string, payload: any) => {
-      dispatch({ type, payload });
-    },
-  }),
+  mapStateToProps
 )(SearchFilter);

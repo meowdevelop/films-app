@@ -4,6 +4,10 @@ import { withRouter } from 'react-router-dom';
 import styles from './Searching.module.scss';
 import SearchFilter from '../../components/SearchFilter/SearchFilter';
 import SearchField from '../../components/SearchField/SearchField';
+import {setSearchFilter} from '../../actions/actions';
+import {setFilms} from '../../actions/actions';
+import {setSearchValue} from '../../actions/actions';
+import {fetchFilms} from '../../actions/actions';
 
 class Searching extends React.Component<any> {
   constructor(props:any) {
@@ -26,17 +30,16 @@ class Searching extends React.Component<any> {
   }
 
   onSearchClick() {
-    const { store, history, updateState } = this.props;
-    const { searchValue, searchFilter } = store.films;
+    const { searchValue, searchFilter, history, setSearchValue } = this.props;
     history.push(`/?f=${searchFilter}&v=${searchValue}`);
 
     this.getFilms(searchValue, searchFilter);
-    updateState('SET_SEARCH_VALUE', '');
+    setSearchValue('');
   }
 
   onSearchChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const { updateState } = this.props;
-    updateState('SET_SEARCH_VALUE', event.target.value);
+    const { setSearchValue } = this.props;
+    setSearchValue(event.target.value);
   }
 
   onEnterPress(event: React.KeyboardEvent<HTMLInputElement>) {
@@ -47,20 +50,12 @@ class Searching extends React.Component<any> {
   }
 
   getFilms(searchValue: string, searchFilter: string) {
-    const { updateState } = this.props;
-    fetch(`/films?${searchFilter}=${searchValue}`)
-      .then((response) => {
-        if (!response.ok) throw new Error('Ответ сети не ok');
-        return response.json();
-      })
-      .then((data) => {
-        updateState('SET_FILMS', data);
-      })
-      .catch((error) => console.log(error.message));
+    const { fetchFilms } = this.props;
+    fetchFilms(`/films?${searchFilter}=${searchValue}`);
   }
 
   getFilmsWithParams() {
-    const { location, updateState } = this.props;
+    const { location, setFilms } = this.props;
     if (location.search !== '') {
       const searchPapams = location.search.slice(1).split('&');
       const objParams = searchPapams.reduce((prevValue: object, item: string) => {
@@ -72,13 +67,13 @@ class Searching extends React.Component<any> {
       }, {});
       this.getFilms(objParams.v, objParams.f);
     } else {
-      updateState('SET_FILMS', []);
+      setFilms([]);
     }
   }
 
   changeFilter(event: React.ChangeEvent<HTMLInputElement>) {
-    const { updateState } = this.props;
-    updateState('SET_SEARCH_FILTER', event.target.name);
+    const { setSearchFilter } = this.props;
+    setSearchFilter(event.target.name);
   }
 
   render() {
@@ -96,13 +91,19 @@ class Searching extends React.Component<any> {
   }
 }
 
+const mapStateToProps = (state: any) => ({
+  searchValue: state.films.searchValue,
+  searchFilter: state.films.searchFilter
+});
+
+const mapDispatchToProps = {
+  setSearchFilter,
+  setFilms,
+  setSearchValue,
+  fetchFilms
+};
+
 export default connect(
-  (state) => ({
-    store: state,
-  }),
-  (dispatch) => ({
-    updateState: (type: string, payload: any) => {
-      dispatch({ type, payload });
-    },
-  }),
+  mapStateToProps,
+  mapDispatchToProps
 )(withRouter(Searching));

@@ -7,66 +7,40 @@ import Footer from '../components/Footer/Footer';
 import FilmCard from '../components/FilmCard/FilmCard';
 import HeaderWrapper from '../components/HeaderWrapper/HeaderWrapper';
 import FilmTypes from '../models/FilmTypes';
+import {setFavourites} from '../actions/actions';
+import {setCurrentFilm} from '../actions/actions';
+import {setIsFavourite} from '../actions/actions';
+import {fetchFilms} from '../actions/actions';
+import {fetchCurrentFilm} from '../actions/actions';
 
-class FilmPage extends React.Component<any, { isFetched: boolean }> {
+class FilmPage extends React.Component<any> {
   constructor(props:any) {
     super(props);
-    this.state = { isFetched: false };
     this.addFavourite = this.addFavourite.bind(this);
+    this.checkIsFavourite = this.checkIsFavourite.bind(this);
+    this.getFilmsByDirector = this.getFilmsByDirector.bind(this);
   }
 
   componentDidMount() {
-    const { match, updateState } = this.props;
-    this.setFavourites();
-
-    fetch(`/filmCard/${match.params.id}`)
-      .then((response) => {
-        if (!response.ok) throw new Error('Ответ сети не ok');
-        return response.json();
-      })
-      .then((data) => {
-        updateState('SET_CURRENT_FILM', { film: data, isFavourite: this.checkIsFavourite() });
-        this.getFilmsByDirector(data.director);
-      })
-      .then(() => {
-        this.setState({ isFetched: true });
-      })
-      .catch((error) => console.log(error.message));
+    const { match, fetchCurrentFilm } = this.props;
+    this.setFavouritesFromStorage();
+    fetchCurrentFilm(`/filmCard/${match.params.id}`, this.checkIsFavourite, this.getFilmsByDirector);
   }
 
   getFilmsByDirector(director: string) {
-    const { updateState } = this.props;
-    fetch(`/films?director=${director}`)
-      .then((response) => {
-        if (!response.ok) throw new Error('Ответ сети не ok');
-        return response.json();
-      })
-      .then((data) => {
-        updateState('SET_FILMS', this.mapWithFavorites(data));
-      })
-      .catch((error) => console.log(error.message));
+    const { fetchFilms } = this.props;
+    fetchFilms(`/films?director=${director}`);
   }
 
-  setFavourites() {
-    const { updateState } = this.props;
+  setFavouritesFromStorage() {
+    const { setFavourites } = this.props;
     if (localStorage.favourites) {
-      updateState('SET_FAVOURITES', localStorage.favourites.split('&'));
+      setFavourites(localStorage.favourites.split('&'));
     }
   }
 
-  mapWithFavorites(films: FilmTypes[]) {
-    const { store } = this.props;
-    const { favourites } = store.films;
-    return films.map((item: FilmTypes) => {
-      if (favourites.includes(`${item.id}`)) return { ...item, isFav: true };
-      return { ...item, isFav: false };
-    });
-  }
-
   addFavourite() {
-    const { updateState, store } = this.props;
-    const { film, isFavourite } = store.films.currentFilm;
-    const { favourites } = store.films;
+    const { setIsFavourite, film, isFavourite, favourites } = this.props;
     let isFav = false;
 
     if (!localStorage.favourites) {
@@ -83,45 +57,45 @@ class FilmPage extends React.Component<any, { isFetched: boolean }> {
       isFav = true;
     }
     localStorage.favourites = favourites.join('&');
-    updateState('SET_IS_FAVOURITE', isFav);
-    this.setFavourites();
+    setIsFavourite(isFav);
+    this.setFavouritesFromStorage();
   }
 
   checkIsFavourite() {
-    const { store, match } = this.props;
-    const { favourites } = store.films;
+    const { favourites, match } = this.props;
     return favourites.includes(`${match.params.id}`);
   }
 
   render() {
-    const { isFetched } = this.state;
-    const { store } = this.props;
-    const { film, isFavourite } = store.films.currentFilm;
-    const { films } = store.films;
-    return (
-      <section>
-        {isFetched ? (
-          <>
-            <HeaderWrapper component={<FilmCard film={film} isFavourite={isFavourite} onClick={this.addFavourite} />} />
-            <ResultsInfo text={`Films by ${film.director}`} />
-            <FilmsList films={films} />
-          </>
-        )
-          : null}
+    const { film, isFavourite, films } = this.props;
 
+    return (
+      <>
+        <HeaderWrapper component={<FilmCard film={film} isFavourite={isFavourite} onClick={this.addFavourite} />} />
+        <ResultsInfo text={`Films by ${film.director}`} />
+        <FilmsList films={films} />
         <Footer />
-      </section>
+      </>
     );
   }
 }
 
+const mapStateToProps = (state: any) => ({
+  favourites: state.films.favourites,
+  films: state.films.films,
+  film: state.films.currentFilm.film,
+  isFavourite: state.films.currentFilm.isFavourite,
+});
+
+const mapDispatchToProps = {
+  setFavourites,
+  setCurrentFilm,
+  setIsFavourite,
+  fetchFilms,
+  fetchCurrentFilm
+};
+
 export default connect(
-  (state) => ({
-    store: state,
-  }),
-  (dispatch) => ({
-    updateState: (type: string, payload: any) => {
-      dispatch({ type, payload });
-    },
-  }),
+  mapStateToProps,
+  mapDispatchToProps
 )(FilmPage);

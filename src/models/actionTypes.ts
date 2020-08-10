@@ -1,0 +1,7 @@
+export const SET_SEARCH_VALUE = 'SET_SEARCH_VALUE';
+export const SET_SEARCH_FILTER = 'SET_SEARCH_FILTER';
+export const SET_SORT_TYPE = 'SET_SORT_TYPE';
+export const SET_FILMS = 'SET_FILMS';
+export const SET_FAVOURITES = 'SET_FAVOURITES';
+export const SET_CURRENT_FILM = 'SET_CURRENT_FILM';
+export const SET_IS_FAVOURITE = 'SET_IS_FAVOURITE';

@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import styles from './Header.module.scss';
 import BtnSearchLink from '../Btns/BtnSearchLink';
 
-function Header(props: {location: any}) {
+const Header = (props: {location: any}) => {
   const { location } = props;
   return (
     <header className={styles.header}>
