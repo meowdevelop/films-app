@@ -1,13 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import FilmsList from '../containers/FilmsList/FilmsList';
 import Searching from '../containers/Searching/Searching';
 import ResultsInfo from '../containers/ResultsInfo/ResultsInfo';
 import Footer from '../components/Footer/Footer';
 import HeaderWrapper from '../components/HeaderWrapper/HeaderWrapper';
+import FilmTypes from '../models/FilmTypes';
 
-const SearchPage = ({searchedFilms}: any) => {
+const SearchPage = (props: {searchedFilms: Array<FilmTypes>}) => {
+  const {searchedFilms} = props;
   return (
     <section>
       <HeaderWrapper component={<Searching />} />

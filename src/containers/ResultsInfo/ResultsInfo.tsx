@@ -1,14 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import styles from './ResultsInfo.module.scss';
 import stylesPage from '../../scss/Page.module.scss';
 import {setSortType} from '../../actions/actions';
 
-const ResultsInfo = (props: {text: string, sortType: string, setSortType: any}) => {
-  const { text, sortType } = props;
+interface ResultsInfoTypes {
+  text: string, 
+  sortType: string, 
+  setSortType: any
+}
+
+const ResultsInfo = ({text, sortType, setSortType}: ResultsInfoTypes) => {
   const changeFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { setSortType } = props;
     setSortType(event.target.id);
   };
   return (

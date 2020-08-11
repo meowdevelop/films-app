@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import styles from './Searching.module.scss';
+import FilmTypes from '../../models/FilmTypes';
 import SearchFilter from '../../components/SearchFilter/SearchFilter';
 import SearchField from '../../components/SearchField/SearchField';
 import {setSearchFilter} from '../../actions/actions';
@@ -9,10 +10,22 @@ import {setFilms} from '../../actions/actions';
 import {setSearchValue} from '../../actions/actions';
 import {fetchFilms} from '../../actions/actions';
 
-class Searching extends React.Component<any> {
-  constructor(props:any) {
+interface SearchingTypes {
+  history: any,
+  location: any,
+  match: any,
+  staticContext: any,
+  searchValue: string,
+  searchFilter: string,
+  setSearchValue: (value: string) => void,
+  setSearchFilter: (filter: string) => void,
+  setFilms: (films: Array<FilmTypes>) => void,
+  fetchFilms: (url: string) => void,
+}
+
+class Searching extends React.Component<SearchingTypes> {
+  constructor(props:SearchingTypes) {
     super(props);
-    this.state = {};
     this.onSearchClick = this.onSearchClick.bind(this);
     this.onSearchChange = this.onSearchChange.bind(this);
     this.onEnterPress = this.onEnterPress.bind(this);

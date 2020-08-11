@@ -3,11 +3,13 @@ import styles from './FilmCard.module.scss';
 import FilmCardTypes from '../../models/FilmCardTypes';
 import BtnAddFavourites from '../Btns/BtnAddFavourites';
 
-const FilmCard = (props: {film: FilmCardTypes,
+interface FilmCardPropTypes {
+  film: FilmCardTypes,
   isFavourite: boolean,
-  onClick?: (e: React.MouseEvent) => void }) => {
-  const { film, isFavourite, onClick } = props;
-  return (
+  onClick?: (e: React.MouseEvent) => void
+}
+
+const FilmCard = ({film, isFavourite, onClick}: FilmCardPropTypes) =>  (
     <section className={styles.filmCard}>
       <div className={styles.filmCard__imgWrap}>
         <img src={`/assets/${film.imgPath}`} className={styles.filmCard__img} alt="film-poster" />
@@ -28,7 +30,6 @@ const FilmCard = (props: {film: FilmCardTypes,
         <p className={styles.filmCard__cast}>{`Cast: ${film.cast}`}</p>
       </div>
     </section>
-  );
-}
+);
 
 export default FilmCard;

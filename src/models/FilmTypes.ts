@@ -6,5 +6,5 @@ export default interface FilmTypes {
   rating: number,
   director: string,
   imgPath: string,
-  isFav: boolean,
+  isFav?: boolean,
 }
